@@ -1,0 +1,179 @@
+{
+    "person": [
+        {
+            "name": "Andrija",
+            "id": "b2cd8aa8-6428-4619-bb4a-6500487128a5",
+            "surname": "Radenkovic",
+            "father": null,
+            "mother": null,
+            "children": null,
+            "position": {
+                "ang": null,
+                "rad": null
+            }
+        },
+        {
+            "name": "Jana",
+            "id": "d2c48479-b330-4d88-97fc-ae98b9897f43",
+            "surname": "Radenkovic",
+            "father": null,
+            "mother": null,
+            "children": null,
+            "position": {
+                "ang": null,
+                "rad": null
+            }
+        },
+        {
+            "name": "Ivana",
+            "id": "e5db2f2d-a4fe-4cea-bda0-9181360ab39b",
+            "surname": "Radenkovic",
+            "father": null,
+            "mother": null,
+            "children": null,
+            "position": {
+                "ang": null,
+                "rad": null
+            }
+        },
+        {
+            "name": "Tamara",
+            "id": "78d40260-1dc3-4182-b2ca-2320895388da",
+            "surname": "Radenkovic",
+            "father": null,
+            "mother": null,
+            "children": null,
+            "position": {
+                "ang": null,
+                "rad": null
+            }
+        },
+        {
+            "name": "Mina",
+            "id": "db3a4f47-9eb2-40ce-8a0c-5fbca2dacd84",
+            "surname": "Radenkovic",
+            "father": null,
+            "mother": null,
+            "children": null,
+            "position": {
+                "ang": null,
+                "rad": null
+            }
+        },
+        {
+            "name": "Dunja",
+            "id": "097eccd5-5af0-42ab-910f-8ed686ead10f",
+            "surname": "Radenkovic",
+            "father": null,
+            "mother": null,
+            "children": null,
+            "position": {
+                "ang": null,
+                "rad": null
+            }
+        },
+        {
+            "id": "6cd3c61f-c6b7-4814-82de-cd9f2d7692d1",
+            "name": "Milos",
+            "surname": "Radenkovic",
+            "father": null,
+            "mother": null,
+            "children": [
+                "3c0b07b4-df06-40e1-8e73-3bd74b7ddcc4"
+            ],
+            "position": {
+                "ang": null,
+                "rad": null
+            }
+        },
+        {
+            "id": "1c3f0b83-ccc6-46f9-b530-7e470bbc401c",
+            "name": "Milos",
+            "surname": "Radenkovic",
+            "father": "45d8c58a-8f03-4804-8eb7-2c791ede1446",
+            "mother": null,
+            "children": [
+                "b2cd8aa8-6428-4619-bb4a-6500487128a5",
+                "d2c48479-b330-4d88-97fc-ae98b9897f43"
+            ],
+            "position": {
+                "ang": null,
+                "rad": null
+            }
+        },
+        {
+            "id": "45d8c58a-8f03-4804-8eb7-2c791ede1446",
+            "name": "Milovan",
+            "surname": "Radenkovic",
+            "father": "3c0b07b4-df06-40e1-8e73-3bd74b7ddcc4",
+            "mother": null,
+            "children": [
+                "1c3f0b83-ccc6-46f9-b530-7e470bbc401c"
+            ],
+            "position": {
+                "ang": null,
+                "rad": null
+            }
+        },
+        {
+            "id": "3c0b07b4-df06-40e1-8e73-3bd74b7ddcc4",
+            "name": "Miodrag",
+            "surname": "Radenkovic",
+            "father": "6cd3c61f-c6b7-4814-82de-cd9f2d7692d1",
+            "mother": null,
+            "children": [
+                "45d8c58a-8f03-4804-8eb7-2c791ede1446",
+                "7dc68dff-9de0-40f0-ad62-291a21bc9729"
+            ],
+            "position": {
+                "ang": null,
+                "rad": null
+            }
+        },
+        {
+            "id": "7dc68dff-9de0-40f0-ad62-291a21bc9729",
+            "name": "Radovan",
+            "surname": "Radenkovic",
+            "father": "3c0b07b4-df06-40e1-8e73-3bd74b7ddcc4",
+            "mother": null,
+            "children": [
+                "9faba932-d8aa-4727-8ba9-c7b3e0839c50",
+                "16bc52ba-1d73-42b9-81d6-96dfa325abdc"
+            ],
+            "position": {
+                "ang": null,
+                "rad": null
+            }
+        },
+        {
+            "id": "9faba932-d8aa-4727-8ba9-c7b3e0839c50",
+            "name": "Bojan",
+            "surname": "Radenkovic",
+            "father": "7dc68dff-9de0-40f0-ad62-291a21bc9729",
+            "mother": null,
+            "children": [
+                "db3a4f47-9eb2-40ce-8a0c-5fbca2dacd84",
+                "097eccd5-5af0-42ab-910f-8ed686ead10f"
+            ],
+            "position": {
+                "ang": null,
+                "rad": null
+            }
+        },
+        {
+            "id": "16bc52ba-1d73-42b9-81d6-96dfa325abdc",
+            "name": "Ivan",
+            "surname": "Radenkovic",
+            "father": "7dc68dff-9de0-40f0-ad62-291a21bc9729",
+            "mother": null,
+            "children": [
+                "78d40260-1dc3-4182-b2ca-2320895388da",
+                "e5db2f2d-a4fe-4cea-bda0-9181360ab39b"
+            ],
+            "position": {
+                "ang": null,
+                "rad": null
+            }
+        }
+    ]
+}

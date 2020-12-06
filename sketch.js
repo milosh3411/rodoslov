@@ -2,8 +2,14 @@
 var w, h;
 // radius step between levels (circles)
 var r
+// last_apha step..
+var a
 // Array(branches) of arrays (levels) of arrays(nodes)
 var tree = [];
+
+function preload() {
+  tree[0] = loadJSON("data/tree.json")
+}
 
 function setup() {
   noLoop();
@@ -12,107 +18,8 @@ function setup() {
   h = displayHeight;
   createCanvas(w, h);
 
-  r = min(w, h) * 0.125;
-
-
-  tree[0] = {
-    "person": [
-      {
-        "id": "6cd3c61f-c6b7-4814-82de-cd9f2d7692d1",
-        "name": "Milos",
-        "surname": "Radenkovic",
-        "father": null,
-        "mother": null,
-        "children": [
-          "3c0b07b4-df06-40e1-8e73-3bd74b7ddcc4"
-        ],
-        "position": {
-          "ang": null,
-          "rad": null
-        }
-      },
-      {
-        "id": "1c3f0b83-ccc6-46f9-b530-7e470bbc401c",
-        "name": "Milos",
-        "surname": "Radenkovic",
-        "father": "45d8c58a-8f03-4804-8eb7-2c791ede1446",
-        "mother": null,
-        "children": null,
-        "position": {
-          "ang": null,
-          "rad": null
-        }
-      },
-      {
-        "id": "45d8c58a-8f03-4804-8eb7-2c791ede1446",
-        "name": "Milovan",
-        "surname": "Radenkovic",
-        "father": "3c0b07b4-df06-40e1-8e73-3bd74b7ddcc4",
-        "mother": null,
-        "children": [
-          "1c3f0b83-ccc6-46f9-b530-7e470bbc401c"
-        ],
-        "position": {
-          "ang": null,
-          "rad": null
-        }
-      },
-      {
-        "id": "3c0b07b4-df06-40e1-8e73-3bd74b7ddcc4",
-        "name": "Miodrag",
-        "surname": "Radenkovic",
-        "father": "6cd3c61f-c6b7-4814-82de-cd9f2d7692d1",
-        "mother": null,
-        "children": [
-          "45d8c58a-8f03-4804-8eb7-2c791ede1446",
-          "7dc68dff-9de0-40f0-ad62-291a21bc9729"
-        ],
-        "position": {
-          "ang": null,
-          "rad": null
-        }
-      },
-      {
-        "id": "7dc68dff-9de0-40f0-ad62-291a21bc9729",
-        "name": "Radovan",
-        "surname": "Radenkovic",
-        "father": "3c0b07b4-df06-40e1-8e73-3bd74b7ddcc4",
-        "mother": null,
-        "children": [
-          "9faba932-d8aa-4727-8ba9-c7b3e0839c50",
-          "16bc52ba-1d73-42b9-81d6-96dfa325abdc"
-        ],
-        "position": {
-          "ang": null,
-          "rad": null
-        }
-      },
-      {
-        "id": "9faba932-d8aa-4727-8ba9-c7b3e0839c50",
-        "name": "Bojan",
-        "surname": "Radenkovic",
-        "father": "7dc68dff-9de0-40f0-ad62-291a21bc9729",
-        "mother": null,
-        "children": null,
-        "position": {
-          "ang": null,
-          "rad": null
-        }
-      },
-      {
-        "id": "16bc52ba-1d73-42b9-81d6-96dfa325abdc",
-        "name": "Ivan",
-        "surname": "Radenkovic",
-        "father": "7dc68dff-9de0-40f0-ad62-291a21bc9729",
-        "mother": null,
-        "children": null,
-        "position": {
-          "ang": null,
-          "rad": null
-        }
-      }
-    ]
-  }
+  r = min(w, h) * 0.095;
+  a = PI / 2
 
 }
 
@@ -120,41 +27,73 @@ function drawChildren(father) {
   // if there are children
   if (father.children != null) {
 
-    // set the radius of children nodes
-    var rc = father.position.rad + r
+    //total number of children is even or odd? It will impact the drawing...
+    var e = isEven(father.children.length)
+
+    // the left-right switch
+    var s = 1
+
+    // remember last node angle
+    var last_a = father.position.ang
+
+    // angle distance between children (level dependant)
+    var delta_a = a/(((father.position.rad + r)/r)*pow(((father.position.rad + r)/r - 1),2))
 
     // for each child
     for (let i = 0; i < father.children.length; i++) {
-      // get person index for that child
-      var pi = tree[0].person.findIndex(x => x.id === father.children[i])
-      // get the person
-      var child = tree[0].person[pi];
-      // set ang and rad for the child and draw connection to the father
-      child.position.rad = rc;
-      child.position.ang = father.position.ang + i * PI / 8;
-      
-      push()
-      translate(w / 2, h / 2)
 
-      var x1 = rc * cos(child.position.ang);
-      var y1 = rc * sin(child.position.ang);
+      // get child object
+      var child = getChildByID(tree[0], father.children[i])
 
-      var x2 = father.position.rad * cos(father.position.ang);
-      var y2 = father.position.rad * sin(father.position.ang);
+      // set ang and rad for the child
+      child.position.rad = father.position.rad + r;
+      child.position.ang = last_a + (i + e) * s * delta_a;
+      last_a = child.position.ang;
 
-      line(x1, y1, x2, y2);
-      ellipse(x1, y1, 5, 5);
-      ellipse(x2, y2, 5, 5);
-      pop()
+      // next child on other side..
+      s = (-1) * s;
+
+      // draw child node and branch to the father
+      drawChildBranch(father, child);
 
       console.log(child.name);
-      //console.log(child.position.rad);
-      //console.log(child.position.ang);
-      //console.log(x1, y1, x2, y2)
+      console.log(delta_a);
 
+      // recursion
       drawChildren(child);
     }
   }
+}
+
+function getChildByID(tree, id) {
+  // get person index for that child
+  var pi = tree.person.findIndex(x => x.id === id)
+  // get the person
+  var c = tree.person[pi];
+  return c
+}
+
+function drawChildBranch(father, child) {
+  push()
+  translate(w / 2, h / 2)
+
+  var x1 = child.position.rad * cos(child.position.ang);
+  var y1 = child.position.rad * sin(child.position.ang);
+
+  var x2 = father.position.rad * cos(father.position.ang);
+  var y2 = father.position.rad * sin(father.position.ang);
+
+  line(x1, y1, x2, y2);
+  ellipse(x1, y1, 5, 5);
+  ellipse(x2, y2, 5, 5);
+  pop()
+}
+
+function isEven(value) {
+  if (value % 2 == 0)
+    return 1;
+  else
+    return 0;
 }
 
 function draw() {
